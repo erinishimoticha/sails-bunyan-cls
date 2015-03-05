@@ -1,0 +1,38 @@
+{
+  "name": "sails-bunyan-cls",
+  "version": "1.0.0",
+  "description": "CLS integration for Bunyan for sails.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/respoke/sails-bunyan-cls.git"
+  },
+  "keywords": [
+    "sails",
+    "bunyan",
+    "logging"
+  ],
+  "author": {
+    "name": "Erin Spiceland",
+    "url": "https://github.com/respoke/sails-bunyan-cls/issues"
+  },
+  "homepage": "https://github.com/respoke/sails-bunyan-cls",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "mocha": "^1.21.4"
+  },
+  "peerDependencies": {
+    "sails": "^0.10.4",
+    "bunyan": "^1.0.0"
+  },
+  "maintainers": [
+    {
+      "name": "erinspice",
+      "email": "yes@erin.codes"
+    }
+  ]
+}
