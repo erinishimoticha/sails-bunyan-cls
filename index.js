@@ -1,18 +1,6 @@
 'use strict';
 
-/**
- * Mapping of Sails log levels to Bunyan.
- */
-var logLevels = {
-  silly: null, // no place for silly around here
-  verbose: 'trace',
-  debug: 'debug',
-  info: 'info',
-  warn: 'warn',
-  error: 'error',
-  crit: 'fatal',
-  blank: 'info' // No idea what this is, but it's on sails.log at level info
-};
+var logLevels = require('sails-bunyan').logLevels;
 
 /**
  * A Sails.js custom log factory. This is a bunyan logger that has been
@@ -27,8 +15,8 @@ var logLevels = {
 module.exports.initialize = function (ns, sails) {
     sails = sails || global.sails;
 
-    logLevels.forEach(function (sailsLevel) {
-        var bunyanLevel = logLevels(sailsLevel);
+    Object.keys(logLevels).forEach(function (sailsLevel) {
+        var bunyanLevel = logLevels[sailsLevel];
     });
 
     /**
