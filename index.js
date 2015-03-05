@@ -17,6 +17,24 @@ module.exports.initialize = function (ns, sails) {
 
     Object.keys(logLevels).forEach(function (sailsLevel) {
         var bunyanLevel = logLevels[sailsLevel];
+
+        if (!bunyanLevel) {
+            return;
+        }
+
+        sails.log[bunyanLevel] = (function () {
+            var globalLog = sails.log[bunyanLevel];
+
+            return function () {
+                var logger = ns.get('logger');
+
+                if (logger && logger[bunyanLevel]) {
+                    logger[bunyanLevel].apply(logger, arguments);
+                } else {
+                    globalLog.apply(globalLog.logger, arguments);
+                }
+            }
+        })();
     });
 
     /**
@@ -24,9 +42,9 @@ module.exports.initialize = function (ns, sails) {
      * @param {object} params The information to append to the context.
      */
     sails.log.addContext = function addContext(params) {
-        var log = ns.get('log');
-        log = log.child(params);
-        ns.set('log', log);
+        var logger = ns.get('logger'); // Throws an error if the CLS middleware hasn't been run yet.
+        logger = logger.child(params);
+        ns.set('logger', logger);
     }
 };
 
