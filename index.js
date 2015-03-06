@@ -1,6 +1,7 @@
 'use strict';
 
 var logLevels = require('sails-bunyan').logLevels;
+var ns;
 
 /**
  * A Sails.js custom log factory. This is a bunyan logger that has been
@@ -12,7 +13,8 @@ var logLevels = require('sails-bunyan').logLevels;
  * @param {object} [sails] The sails global object. Defaults to `global.sails`
  * @returns {object} The newly created bunyan logger
  */
-module.exports.initialize = function (ns, sails) {
+module.exports.initialize = function (namespace, sails) {
+    ns = namespace;
     sails = sails || global.sails;
 
     Object.keys(logLevels).forEach(function (sailsLevel) {
@@ -48,3 +50,11 @@ module.exports.initialize = function (ns, sails) {
     }
 };
 
+module.exports.middleware = function (req, res, next) {
+    ns.run(function () {
+        ns.set('req', req);
+        ns.set('res', res);
+        ns.set('logger', sails.log.logger);
+        next();
+    });
+};
