@@ -44,9 +44,15 @@ module.exports.initialize = function (namespace, sails) {
      * @param {object} params The information to append to the context.
      */
     sails.log.addContext = function addContext(params) {
-        var logger = ns.get('logger'); // Throws an error if the CLS middleware hasn't been run yet.
-        logger = logger.child(params);
-        ns.set('logger', logger);
+        var logger;
+
+        if (ns.active) {
+            logger = ns.get('logger');
+            if (logger) {
+                logger = logger.child(params);
+                ns.set('logger', logger);
+            }
+        }
     }
 };
 
