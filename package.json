@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/respoke/sails-bunyan-cls.git"
+    "url": "https://github.com/erinspice/sails-bunyan-cls.git"
   },
   "keywords": [
     "sails",
@@ -17,9 +17,9 @@
   ],
   "author": {
     "name": "Erin Spiceland",
-    "url": "https://github.com/respoke/sails-bunyan-cls/issues"
+    "url": "https://github.com/erinspice/sails-bunyan-cls/issues"
   },
-  "homepage": "https://github.com/respoke/sails-bunyan-cls",
+  "homepage": "https://github.com/erinspice/sails-bunyan-cls",
   "dependencies": {
   },
   "devDependencies": {
