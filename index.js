@@ -49,7 +49,7 @@ module.exports.initialize = function (namespace, sails) {
         if (ns.active) {
             logger = ns.get('logger');
             if (logger) {
-                logger = logger.child(params);
+                logger = logger.child(params, true);
                 ns.set('logger', logger);
             }
         }
