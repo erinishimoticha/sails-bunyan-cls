@@ -20,13 +20,16 @@
     "url": "https://github.com/erinspice/sails-bunyan-cls/issues"
   },
   "homepage": "https://github.com/erinspice/sails-bunyan-cls",
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^3.9.3"
+  },
   "devDependencies": {
     "mocha": "^1.21.4"
   },
   "peerDependencies": {
+    "sails-bunyan": "^1.x",
     "sails": "^0.10.4",
-    "bunyan": "^1.0.0"
+    "bunyan": "^1.x"
   },
   "maintainers": [
     {

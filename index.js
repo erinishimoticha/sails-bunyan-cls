@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('lodash');
 var logLevels = require('sails-bunyan').logLevels;
 var ns;
 
@@ -49,6 +50,15 @@ module.exports.initialize = function (namespace, sails) {
         if (ns.active) {
             logger = ns.get('logger');
             if (logger) {
+                // apply serializers to the params, b/c simple child loggers
+                // don't
+                params = _.mapValues(params, function (param, key) {
+                    var serializer = logger.serializers[key];
+                    if (!serializer) {
+                        return param;
+                    }
+                    return serializer(param);
+                });
                 logger = logger.child(params, true);
                 ns.set('logger', logger);
             }
